@@ -17,6 +17,10 @@ class LuaError(Exception):
   """Problem with the VLC lua telnet."""
   pass
 
+class ConnectionError(Exception):
+  """Something is wrong with the connection to VLC."""
+  pass
+
 # VLC Telnet Class
 class VLCTelnet(object):
   """Conection to VLC using Telnet."""

@@ -35,9 +35,10 @@ class VLCTelnet(object):
   ## Non commands
   def __init__(self, host="localhost", password="admin", port=4212):
     # Make sure VLC is open at the moment by using pidof. Otherwise raise VLCProcessError.
-    vlc_pidof = Popen("pidof vlc", shell=True, stdout=PIPE).stdout
-    if vlc_pidof.read().decode().replace("\n", "") == "":
-      raise VLCProcessError("No VLC Instance.")
+    if host == '0.0.0.0' or host == '127.0.0.1' or host == 'localhost':
+      vlc_pidof = Popen("pidof vlc", shell=True, stdout=PIPE).stdout
+      if vlc_pidof.read().decode().replace("\n", "") == "":
+        raise VLCProcessError("No VLC Instance.")
     # Connect to telnet. Host and port are __init__ arguments
     try:
       self.tn = telnetlib.Telnet(host, port=port)

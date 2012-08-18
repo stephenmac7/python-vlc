@@ -1,5 +1,13 @@
 # Library for contacting VLC through telnet.
 
+# Imports
+import telnetlib
+import re
+from subprocess import PIPE, Popen
+
+# Error Imports
+from socket import error as sockerr
+
 # Exceptions
 class VLCProcessError(Exception):
   """Something is wrong with VLC itself."""
@@ -26,12 +34,6 @@ class VLCTelnet(object):
   """Conection to VLC using Telnet."""
   ## Non commands
   def __init__(self, host="localhost", password="admin", port=4212):
-    # Imports
-    import telnetlib
-    import re
-    from subprocess import PIPE, Popen
-    # Error Imports
-    from socket import error as sockerr
     # Make sure VLC is open at the moment by using pidof. Otherwise raise VLCProcessError.
     vlc_pidof = Popen("pidof vlc", shell=True, stdout=PIPE).stdout
     if vlc_pidof.read().decode().replace("\n", "") == "":

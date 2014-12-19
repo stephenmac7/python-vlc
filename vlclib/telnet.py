@@ -197,7 +197,7 @@ class VLCTelnet(object):
   # Block 2
   def seek(self, time):
     """Seek in seconds, for instance 'seek 12'."""
-    command = 'seek ' + time
+    command = 'seek ' + str(time)
     self.run_command(command)
 
   def pause(self):
@@ -320,7 +320,7 @@ class VLCTelnet(object):
 
   def set_atrack(self, setto):
     """Set audio track."""
-    command = 'atrack ' + setto
+    command = 'atrack ' + str(setto)
     self.run_command(command)
 
   def atrack(self):
@@ -329,7 +329,7 @@ class VLCTelnet(object):
 
   def set_vtrack(self, setto):
     """Set video track."""
-    command = 'vtrack ' + setto
+    command = 'vtrack ' + str(setto)
     self.run_command(command)
 
   def vtrack(self):
